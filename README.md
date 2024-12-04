@@ -1,6 +1,6 @@
 # Auto Check-in for Preneur Lab Guys
 
-Automatically checks in to office, when your computer starts up!
+Automatically check in to the office, when your computer starts up!
 
 ---
 
@@ -30,5 +30,7 @@ Run the installer:
 ```bash
 python installer.py
 ```
+
+For windows Users, there is a [Installer](https://github.com/dippreneurlab/preneur_checkin/releases/download/installer/auto_checkin_v0.0.1.exe), try it out!
 
 Now Chill!
