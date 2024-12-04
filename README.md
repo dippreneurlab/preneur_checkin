@@ -1,6 +1,6 @@
-# Auto Check-in System for Preneur Lab
+# Auto Check-in for Preneur Lab Guys
 
-Automatically checks in when your computer starts up! Follow the steps below to set up the system.
+Automatically checks in to office, when your computer starts up!
 
 ---
 
