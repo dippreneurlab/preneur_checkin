@@ -6,57 +6,47 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from webdriver_manager.chrome import ChromeDriverManager
+from dotenv import load_dotenv
+import os
 
-# Setup ChromeDriver
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service)
+def login_try(login_url, home_url, email, password):
+    driver.get(login_url)
+    username_field = driver.find_element(By.NAME, 'email')
+    password_field = driver.find_element(By.NAME, 'password')
+    username_field.send_keys(email)
+    password_field.send_keys(password)
+    login_button = driver.find_element(By.NAME, 'login')
+    login_button.click()
+    WebDriverWait(driver, 10).until(
+        EC.url_to_be(home_url)
+    )
+    if driver.current_url == home_url: return True
+    else: return False
 
-# Open the login page
-driver.get('https://preneurlab.com/work/login.php')
-target_url_after_login = "https://preneurlab.com/work/index.php"
-attendance_url = "https://preneurlab.com/work/attendance.php"
-
-# Find and interact with the username and password fields
-username_field = driver.find_element(By.NAME, 'email')
-password_field = driver.find_element(By.NAME, 'password')
-
-username_field.send_keys('dip.preneurlab@gmail.com')
-password_field.send_keys('preneurMAIL*2023')
-
-# Click the login button
-login_button = driver.find_element(By.NAME, 'login')
-login_button.click()
-
-# Wait until the URL changes to the target URL after login
-WebDriverWait(driver, 10).until(
-    EC.url_to_be(target_url_after_login)
-)
-
-# Check if the login was successful
-if driver.current_url == target_url_after_login:
-    print("Login successful!")
-    
-    # Navigate to the attendance page
+def attendance_try(attendance_url):
     driver.get(attendance_url)
-    
-    # Wait until the dropdown is present and interact with it
     work_modality_dropdown = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, 'status'))
     )
     select = Select(work_modality_dropdown)
     select.select_by_visible_text('Regular Office')
-    
-    # Click the check-in button
     checkin_button = driver.find_element(By.NAME, 'checkButton')
     checkin_button.click()
-    
-    # Wait until the success message is present
     WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CLASS_NAME, 'success-message'))  # Adjust based on the actual success message element
+        EC.presence_of_element_located((By.CLASS_NAME, 'success-message'))
     )
-    print("Check-in successful!")
-else:
-    print("Login failed. Current URL:", driver.current_url)
 
-# Close the browser
+load_dotenv()
+email = os.getenv('EMAIL')
+password = os.getenv('PASSWORD')
+login_url = os.getenv('LOGIN_URL')
+home_url = os.getenv('HOME_URL')
+attendance_url = os.getenv('ATTENDANCE_URL')
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
+
+new_login = login_try(login_url, home_url, email, password)
+if new_login == True:
+    new_attendance_url = attendance_try(attendance_url)
 driver.quit()
