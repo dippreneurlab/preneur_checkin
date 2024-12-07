@@ -276,7 +276,7 @@ function user_info_extract($response){
     }
     $activeUsers = array_values($activeUsers);
     $jsonData = json_encode($activeUsers, JSON_PRETTY_PRINT);
-    return empty($jsonData) ? false : true;
+    return empty($jsonData) ? false : $jsonData;
 }
 function store_active_user_info($db, $jsonData){
     $dateTime = date('Y-m-d H:i:s');
