@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/preneur_checkin">Home</a></li>
-          <li><a href="/preneur_checkin/api_install/">API-based Check-in</a></li>
-          <li><a href="/preneur_checkin/local_install/">Installer-based Check-in</a></li>
-        </ul>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>{{ site.title }}</h1>
+  </header>
 
-    <main>
-      {{ content }}
-    </main>
+  <nav>
+    <a href="{{ site.baseurl }}/">Home</a>
+    <a href="{{ site.baseurl }}/api_install/">API-based Check-in</a>
+    <a href="{{ site.baseurl }}/local_install/">Installer-based Check-in</a>
+  </nav>
 
-    <footer>
-      <p>&copy; 2024 Nobody gonna claim the copyright but the repoholder get the bash!</p>
-    </footer>
-  </body>
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>&copy; {{ site.time | date: "%Y" }} Nobody gonna claim the copyright but the repoholder get the bash!</p>
+  </footer>
+</body>
 </html>
