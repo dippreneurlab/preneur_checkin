@@ -1,1 +1,8 @@
 theme: minima
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "API-based Check-in"
+    url: "/api_install/"
+  - title: "Installer-based Check-in"
+    url: "/local_install/"
