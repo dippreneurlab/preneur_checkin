@@ -1,4 +1,4 @@
-# Auto Check-in for Preneur Lab Guys
+# Local Installer
 
 Automatically check in to the office, when your computer starts up!
 

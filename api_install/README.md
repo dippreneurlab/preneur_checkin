@@ -1,3 +1,8 @@
+# API Installer
+
+Automatically check in to the office, just hit the link in your browser after host it!
+
+
 <strong>Database Setup and Cron Job Configuration</strong>
 
 
