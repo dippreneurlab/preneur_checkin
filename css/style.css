@@ -1,10 +1,23 @@
-body {
+  body {
     font-family: Arial, sans-serif;
     background-color: #f4f7f6;
     color: #333;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  main {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   h1, h2, h3, h4 {
@@ -12,7 +25,6 @@ body {
     color: #4a90e2;
   }
   
-  /* Header */
   header {
     background-color: #333;
     color: #fff;
@@ -36,13 +48,6 @@ body {
   
   nav a:hover {
     background-color: #666;
-  }
-
-  main {
-    margin: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
   }
   
   h2 {
