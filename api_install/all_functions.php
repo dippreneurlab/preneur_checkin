@@ -155,16 +155,18 @@ function validate_status($status) {
     $allowed_statuses = ["REGULAR OFFICE", "WORK FROM HOME"];
     if (!isset($status) || trim($status) === '' || strtolower($status) == 'regular') $status = "Regular Office";
     elseif(strtolower($status) == 'wfh') $status = "Work from Home";
-    return (!in_array(strtoupper($status), $allowed_statuses)) ? true : false;
+    return in_array(strtoupper($status), $allowed_statuses) ? $status : false;
 }
 
 function get_email_and_user_id($username, $user_data) {
     $possible_domains = ["@gmail.com", "@preneurlab.com", "@preneurlab.org"];
     foreach ($possible_domains as $domain) {
         $email = $username . $domain;
-        foreach ($user_data as $id => $user_email) {
+        foreach ($user_data as $id => $user_row) {
+            $user_email = $user_row['email'];
+            $user_id = $user_row['id'];
             if ($email === $user_email) {
-                return ['email' => $email, 'user_id' => (int)$id];
+                return ['email' => $user_email, 'user_id' => (int)$user_id];
             }
         }
     }

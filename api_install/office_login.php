@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode(["Message" => "Error connecting to the database.", "Code" => 500]);
         exit;
     }
-
     if (is_friday()) {
         echo json_encode(["Message" => "No need to check in today, it's Friday. Enjoy your holiday!", "Code" => 403]);
         exit;
@@ -32,14 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode(["Message" => "Error! Invalid status. Allowed statuses are: REGULAR OFFICE, WORK FROM HOME", "Code" => 400]);
         exit;
     }
-
     $user_data = get_user_data($db);
     $user_info = get_email_and_user_id($username, $user_data);
     if (!$user_info) {
         echo json_encode(["Message" => "Error! Sorry! You don't exist in the PreneurLab database anymore!", "Code" => 401]);
         exit;
     }
-
     $email = $user_info['email'];
     $user_id = $user_info['user_id'];
     echo check_in($email, $user_id, $validated_status);
